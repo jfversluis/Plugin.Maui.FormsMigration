@@ -21,7 +21,7 @@ public static class LegacySecureStorage
 	/// Gets and decrypts the value for a given key from the Xamarin.Essentials (legacy) SecureStorage store.
 	/// </summary>
 	/// <param name="key">The key to retrieve the value for.</param>
-	/// <returns>The decrypted string value or <see langword="null"/> if a value was not found.</returns>
+	/// <returns>The decrypted string value or <see cref="string.Empty"/> if a value was not found.</returns>
 	public static Task<string> GetAsync(string key)
     {
         ArgumentException.ThrowIfNullOrEmpty(nameof(key), nameof(key));

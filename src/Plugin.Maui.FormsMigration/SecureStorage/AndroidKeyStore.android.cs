@@ -27,7 +27,9 @@ class AndroidKeyStore
         appContext = context;
         alias = keystoreAlias;
 
-        keyStore = KeyStore.GetInstance(androidKeyStore);
+        keyStore = KeyStore.GetInstance(androidKeyStore)
+			?? throw new Exception($"Could not retrieve instance of Android keystore with ID {androidKeyStore}");
+
         keyStore.Load(null);
     }
 
@@ -202,7 +204,7 @@ class AndroidKeyStore
     {
         if (data.Length < initializationVectorLen)
         {
-            return null;
+            return string.Empty;
         }
 
         var key = GetKey();
@@ -240,20 +242,29 @@ class AndroidKeyStore
     {
         Java.Util.Locale.Default = locale;
         var resources = appContext.Resources;
-        var config = resources.Configuration;
+        var config = resources?.Configuration;
 
-        if (Build.VERSION.SdkInt >= BuildVersionCodes.N)
+		if (config is null)
+		{
+			return;
+		}
+
+		if (OperatingSystem.IsAndroidVersionAtLeast(24))
         {
             config.SetLocale(locale);
         }
         else
         {
-#pragma warning disable CS0618 // Type or member is obsolete
-            config.Locale = locale;
-#pragma warning restore CS0618 // Type or member is obsolete
+			config.Locale = locale;
         }
-#pragma warning disable CS0618 // Type or member is obsolete
-        resources.UpdateConfiguration(config, resources.DisplayMetrics);
-#pragma warning restore CS0618 // Type or member is obsolete
+
+		if (OperatingSystem.IsAndroidVersionAtLeast(25))
+		{
+			Platform.AppContext.CreateConfigurationContext(config);
+		}
+		else
+		{
+			resources?.UpdateConfiguration(config, resources.DisplayMetrics);
+		}
     }
 }
