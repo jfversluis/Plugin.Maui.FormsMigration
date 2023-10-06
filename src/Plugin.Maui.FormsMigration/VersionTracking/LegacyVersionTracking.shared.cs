@@ -101,7 +101,8 @@ public static class LegacyVersionTracking
 		=> CurrentBuild == build && IsFirstLaunchForCurrentBuild;
 
 	static string[] ReadHistory(string key)
-		=> LegacyPreferences.Get(key, null, sharedName)?.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries) ?? new string[0];
+		=> LegacyPreferences.Get(key, null, sharedName)?.Split(new[] { '|' },
+			StringSplitOptions.RemoveEmptyEntries) ?? Array.Empty<string>();
 
 	static string GetPrevious(string key)
 	{
