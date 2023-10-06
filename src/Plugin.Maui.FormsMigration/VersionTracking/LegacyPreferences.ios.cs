@@ -4,7 +4,7 @@ namespace Plugin.Maui.FormsMigration.VersionTracking;
 
 public static partial class LegacyPreferences
 {
-	static readonly object locker = new object();
+	static readonly object locker = new();
 
 	static bool PlatformContainsKey(string key, string sharedName)
 	{

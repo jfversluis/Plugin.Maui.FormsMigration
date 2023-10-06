@@ -2,17 +2,15 @@ using System.Diagnostics;
 using System.Runtime.Serialization;
 using Windows.Storage;
 
-namespace Plugin.Maui.FormsMigration.Properties;
+namespace Plugin.Maui.FormsMigration;
 
-public static class PropertiesDeserializer
+class PropertiesDeserializer
 {
-    const string propertyStoreFile = "PropertyStore.forms";
-
-    public static async Task<IDictionary<string, object>> DeserializePropertiesAsync()
+    public async Task<IDictionary<string, object>> DeserializePropertiesAsync()
     {
         try
         {
-            StorageFile file = await ApplicationData.Current.RoamingFolder.GetFileAsync(propertyStoreFile).DontSync();
+            StorageFile file = await ApplicationData.Current.RoamingFolder.GetFileAsync(Constants.propertyStoreFile).DontSync();
 			using Stream stream = (await file.OpenReadAsync().DontSync()).AsStreamForRead();
 
 			if (stream.Length == 0)

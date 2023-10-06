@@ -1,7 +1,7 @@
 ﻿using System.Runtime.CompilerServices;
 using Windows.Foundation;
 
-namespace Plugin.Maui.FormsMigration.Properties;
+namespace Plugin.Maui.FormsMigration;
 
 static class Extensions
 {

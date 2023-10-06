@@ -4,5 +4,9 @@
              x:Class="Plugin.Maui.FormsMigration.Sample.MainPage"
              Title="Feature Plugin">
 
-    <!-- Add something that makes sense for your plugin here -->
+	<VerticalStackLayout>
+		<Button Text="SecureStorage" Clicked="SecureStorage_Clicked" />
+		<Button Text="VersionTracking" Clicked="VersionTracking_Clicked" />
+		<Button Text="Properties" Clicked="AppProperties_Clicked" />
+	</VerticalStackLayout>
 </ContentPage>

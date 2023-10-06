@@ -1,6 +1,6 @@
 using Microsoft.Maui.ApplicationModel;
 
-namespace Plugin.Maui.FormsMigration.SecureStorage;
+namespace Plugin.Maui.FormsMigration;
 
 /// <summary>
 /// The LegacySecureStorage class allows access to the secure values saved with Xamarin.Essentials.

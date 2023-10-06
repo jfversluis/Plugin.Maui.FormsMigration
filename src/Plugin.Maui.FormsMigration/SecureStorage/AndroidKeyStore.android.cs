@@ -10,7 +10,7 @@ using Microsoft.Maui.ApplicationModel;
 using Microsoft.Maui.Storage;
 using System.Text;
 
-namespace Plugin.Maui.FormsMigration.SecureStorage;
+namespace Plugin.Maui.FormsMigration;
 
 class AndroidKeyStore
 {

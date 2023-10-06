@@ -1,6 +1,6 @@
 using Security;
 
-namespace Plugin.Maui.FormsMigration.SecureStorage;
+namespace Plugin.Maui.FormsMigration;
 
 class KeyChain
 {
