@@ -26,13 +26,29 @@ public partial class MainPage : ContentPage
 	}
 
 	// VersionTracking Example
-	async void VersionTracking_Clicked(object sender, EventArgs e)
+	void VersionTracking_Clicked(object sender, EventArgs e)
 	{
+		// TBD
+		labelIsFirst.Text = LegacyVersionTracking.IsFirstLaunchEver.ToString();
+		labelCurrentVersionIsFirst.Text = LegacyVersionTracking.IsFirstLaunchForCurrentVersion.ToString();
+		labelCurrentBuildIsFirst.Text = LegacyVersionTracking.IsFirstLaunchForCurrentBuild.ToString();
+		labelCurrentVersion.Text = LegacyVersionTracking.CurrentVersion.ToString();
+		labelCurrentBuild.Text = LegacyVersionTracking.CurrentBuild.ToString();
+		labelFirstInstalledVer.Text = LegacyVersionTracking.FirstInstalledVersion.ToString();
+		labelFirstInstalledBuild.Text = LegacyVersionTracking.FirstInstalledBuild.ToString();
+		labelVersionHistory.Text = string.Join(',', LegacyVersionTracking.VersionHistory);
+		labelBuildHistory.Text = string.Join(',', LegacyVersionTracking.BuildHistory);
 
+		// These two properties may be null if this is the first version
+		labelPreviousVersion.Text = LegacyVersionTracking.PreviousVersion?.ToString() ?? "none";
+		labelPreviousBuild.Text = LegacyVersionTracking.PreviousBuild?.ToString() ?? "none";
+
+		List<string> vhistory = new() { "1.0", "2.0", "3.0", "4.0", "5.0" };
+		List<string> bhistory = new() { "1", "2", "3", "4", "5" };
 	}
 
 	// Properties Example
-	async void AppProperties_Clicked(object sender, EventArgs e)
+	void AppProperties_Clicked(object sender, EventArgs e)
 	{
 		// Retrieve values from your legacy Xamarin application through the LegacyApplication class.
 

@@ -4,9 +4,20 @@
              x:Class="Plugin.Maui.FormsMigration.Sample.MainPage"
              Title="Feature Plugin">
 
-	<VerticalStackLayout>
+	<VerticalStackLayout Spacing="5" Margin="10">
 		<Button Text="SecureStorage" Clicked="SecureStorage_Clicked" />
 		<Button Text="VersionTracking" Clicked="VersionTracking_Clicked" />
 		<Button Text="Properties" Clicked="AppProperties_Clicked" />
+		<Label x:Name="labelIsFirst" />
+		<Label x:Name="labelCurrentVersionIsFirst" />
+		<Label x:Name="labelCurrentBuildIsFirst" />
+		<Label x:Name="labelCurrentVersion" />
+		<Label x:Name="labelCurrentBuild" />
+		<Label x:Name="labelPreviousVersion" />
+		<Label x:Name="labelPreviousBuild" />
+		<Label x:Name="labelFirstInstalledVer" />
+		<Label x:Name="labelFirstInstalledBuild" />
+		<Label x:Name="labelVersionHistory" />
+		<Label x:Name="labelBuildHistory" />
 	</VerticalStackLayout>
 </ContentPage>

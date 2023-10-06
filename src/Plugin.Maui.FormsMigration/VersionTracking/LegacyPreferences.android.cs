@@ -2,7 +2,7 @@
 using Android.Content;
 using Android.Preferences;
 
-namespace Plugin.Maui.FormsMigration.VersionTracking;
+namespace Plugin.Maui.FormsMigration;
 
 public static partial class LegacyPreferences
 {

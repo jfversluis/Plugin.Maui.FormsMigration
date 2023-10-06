@@ -1,6 +1,6 @@
 ﻿using Windows.Storage;
 
-namespace Plugin.Maui.FormsMigration.VersionTracking;
+namespace Plugin.Maui.FormsMigration;
 
 static partial class LegacyPreferences
 {
