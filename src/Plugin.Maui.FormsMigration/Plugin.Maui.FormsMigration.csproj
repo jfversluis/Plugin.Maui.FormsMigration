@@ -15,19 +15,19 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 
 		<!-- NuGet -->
-		<Authors>author</Authors>
-		<Copyright>Copyright © author and contributors</Copyright>
+		<Authors>Gerald Versluis</Authors>
+		<Copyright>Copyright © Gerald Versluis and contributors</Copyright>
 		<IsPackable>True</IsPackable>
 		<PackageProjectUrl>https://github.com/jfversluis/Plugin.Maui.FormsMigration</PackageProjectUrl>
 		<RepositoryUrl>https://github.com/jfversluis/Plugin.Maui.FormsMigration</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>dotnet-maui;maui;plugin;</PackageTags>
+		<PackageTags>dotnet-maui;maui;plugin;migration;xamarin;xamarin-forms;</PackageTags>
 		<IncludeSymbols>True</IncludeSymbols>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		<EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<Title>.NET MAUI Feature Plugin</Title>
-		<Description>Plugin.Maui.FormsMigration provides the ability to do this amazing thing in your .NET MAUI application.</Description>
+		<Title>.NET MAUI Xamarin.Forms Migration Plugin</Title>
+		<Description>Plugin.Maui.FormsMigration provides helpers to make your transition from Xamarin.Forms to .NET MAUI easier.</Description>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<DebugType>portable</DebugType>
