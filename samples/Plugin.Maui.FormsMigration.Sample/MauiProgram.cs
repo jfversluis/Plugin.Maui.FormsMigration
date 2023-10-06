@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using Plugin.Maui.FormsMigration;
-
-namespace Plugin.Maui.FormsMigration.Sample;
+﻿namespace Plugin.Maui.FormsMigration.Sample;
 
 public static class MauiProgram
 {
@@ -17,7 +14,6 @@ public static class MauiProgram
 			});
 
 		builder.Services.AddTransient<MainPage>();
-		builder.Services.AddSingleton<IFeature>(Feature.Default);
 
 		return builder.Build();
 	}
