@@ -68,8 +68,11 @@ await SecureStorage.SetAsync("oauth_token", oauthToken);
 
 > [!WARNING]
 > For iOS, make sure you have a `Entitlements.plist` with the following entry:
+> 
 > `<key>keychain-access-groups</key>`
+> 
 > `<string>$(AppIdentifierPrefix)$(CFBundleIdentifier)</string>`
+> 
 > `$(AppIdentifierPrefix)$(CFBundleIdentifier)` can stay in place and will be replaced at build time or you can replace it with a hardcoded value.
 > Additionally make sure that the `Entitlements.plist` file is set in the Custom Entitlements field for Bundle Signing. For more information, refer to the [Microsoft Learn Docs page about entitlements](https://learn.microsoft.com/dotnet/maui/ios/entitlements).
 
