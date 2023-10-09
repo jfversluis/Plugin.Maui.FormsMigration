@@ -11,9 +11,9 @@ public static class LegacyVersionTracking
 
 	static Dictionary<string, List<string>> versionTrail = new();
 
-	public static string VersionsKey => versionsKey;
-	public static string BuildsKey => buildsKey;
-	public static string SharedName => sharedName;
+	static string VersionsKey => versionsKey;
+	static string BuildsKey => buildsKey;
+	static string SharedName => sharedName;
 
 	static LegacyVersionTracking()
 	{
@@ -68,35 +68,74 @@ public static class LegacyVersionTracking
 		}
 	}
 
-	public static void Track()
-	{
-	}
-
+	/// <summary>
+	/// Gets a value indicating whether this is the first time this app has ever been launched on this device.
+	/// </summary>
 	public static bool IsFirstLaunchEver { get; private set; }
 
+	/// <summary>
+	/// Gets a value indicating if this is the first launch of the legacy Xamarin app for the current version number.
+	/// </summary>
 	public static bool IsFirstLaunchForCurrentVersion { get; private set; }
 
+	/// <summary>
+	/// Gets a value indicating if this is the first launch of the legacy Xamarin app for the current version number.
+	/// </summary>
 	public static bool IsFirstLaunchForCurrentBuild { get; private set; }
 
+	/// <summary>
+	/// Gets the current version number of the legacy Xamarin app.
+	/// </summary>
 	public static string CurrentVersion => AppInfo.VersionString;
 
+	/// <summary>
+	/// Gets the current build of the legacy Xamarin app.
+	/// </summary>
 	public static string CurrentBuild => AppInfo.BuildString;
 
+	/// <summary>
+	/// Gets the version number for the previously run version of the legacy Xamarin app.
+	/// </summary>
 	public static string PreviousVersion => GetPrevious(versionsKey);
 
+	/// <summary>
+	/// Gets the build number for the previously run version of the legacy Xamarin app.
+	/// </summary>
 	public static string PreviousBuild => GetPrevious(buildsKey);
 
+	/// <summary>
+	/// Gets the version number of the first version of the app legacy Xamarin that was installed on this device.
+	/// </summary>
 	public static string FirstInstalledVersion => versionTrail[versionsKey].FirstOrDefault();
 
+	/// <summary>
+	/// Gets the build number of first version of the legacy Xamarin app that was installed on this device.
+	/// </summary>
 	public static string FirstInstalledBuild => versionTrail[buildsKey].FirstOrDefault();
 
+	/// <summary>
+	/// Gets the collection of version numbers of the legacy Xamarin app that ran on this device.
+	/// </summary>
 	public static IEnumerable<string> VersionHistory => versionTrail[versionsKey].ToArray();
 
+	/// <summary>
+	/// Gets the collection of build numbers of the legacy Xamarin app that ran on this device.
+	/// </summary>
 	public static IEnumerable<string> BuildHistory => versionTrail[buildsKey].ToArray();
 
+	/// <summary>
+	/// Determines if this is the first launch of the app for a specified version number.
+	/// </summary>
+	/// <param name="version">The version number.</param>
+	/// <returns><see langword="true"/> if this is the first launch of the app for the specified version number; otherwise <see langword="false"/>.</returns>
 	public static bool IsFirstLaunchForVersion(string version)
 		=> CurrentVersion == version && IsFirstLaunchForCurrentVersion;
 
+	/// <summary>
+	/// Determines if this is the first launch of the app for a specified build number.
+	/// </summary>
+	/// <param name="build">The build number.</param>
+	/// <returns><see langword="true"/> if this is the first launch of the app for the specified build number; otherwise <see langword="false"/>.</returns>
 	public static bool IsFirstLaunchForBuild(string build)
 		=> CurrentBuild == build && IsFirstLaunchForCurrentBuild;
 
