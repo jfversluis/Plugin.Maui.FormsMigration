@@ -88,6 +88,8 @@ The [VersionTracking API](https://learn.microsoft.com/dotnet/maui/platform-integ
 > [!WARNING]
 > Make sure that the app version of your .NET MAUI app is **higher** than your legacy Xamarin application. Failing to do so might have unexpected results.
 
+Also see this [Microsoft Learn Docs page](https://learn.microsoft.com/dotnet/maui/migration/version-tracking) for more information.
+
 # Acknowledgements
 
 This project could not have came to be without these projects and people, thank you! <3
