@@ -10,9 +10,11 @@ public partial class MainPage : ContentPage
 	// SecureStorage Example
 	async void SecureStorage_Clicked(object sender, EventArgs e)
 	{
+		// More information: https://learn.microsoft.com/dotnet/maui/migration/secure-storage
+		
 		// Xamarin.Essentials SecureStorage stores its data in $(AppInfo.PackageName).xamarinessentials
 		// MAUI SecureStorage stores its data in $(AppInfo.PackageName).microsoft.maui.essentials.preferences
-		// MAUI also uses different encryption for SecureStorage than used in Xamarin.Essentials (I think)
+		// MAUI also uses different encryption for SecureStorage than used in Xamarin.Essentials.
 
 		// $(AppInfo.PackageName) is referring to the Microsoft.Maui.ApplicationModel.AppInfo APIs and
 		// will be replaced with your actual application ID. These should be the same for both your old app and new app.
@@ -28,7 +30,11 @@ public partial class MainPage : ContentPage
 	// VersionTracking Example
 	void VersionTracking_Clicked(object sender, EventArgs e)
 	{
-		// TBD
+		// More information: https://learn.microsoft.com/dotnet/maui/migration/version-tracking
+
+		// Retrieve values from your legacy Xamarin application through the LegacyVersionTracking class.
+
+		// Read legacy version/build number information
 		labelIsFirst.Text = LegacyVersionTracking.IsFirstLaunchEver.ToString();
 		labelCurrentVersionIsFirst.Text = LegacyVersionTracking.IsFirstLaunchForCurrentVersion.ToString();
 		labelCurrentBuildIsFirst.Text = LegacyVersionTracking.IsFirstLaunchForCurrentBuild.ToString();
@@ -43,19 +49,21 @@ public partial class MainPage : ContentPage
 		labelPreviousVersion.Text = LegacyVersionTracking.PreviousVersion?.ToString() ?? "none";
 		labelPreviousBuild.Text = LegacyVersionTracking.PreviousBuild?.ToString() ?? "none";
 
-		List<string> vhistory = new() { "1.0", "2.0", "3.0", "4.0", "5.0" };
-		List<string> bhistory = new() { "1", "2", "3", "4", "5" };
+		// Transfer the full legacy Xamarin app version tracking information (version & build numbers)
+		// to the .NET MAUI Version Tracking data store. Before doing so the *new* .NET MAUI Version Tracking
+		// store will be cleared.
+		LegacyVersionTracking.TransferHistory(true, true, true);
 	}
 
 	// Properties Example
 	void AppProperties_Clicked(object sender, EventArgs e)
 	{
+		// More information: https://learn.microsoft.com/dotnet/maui/migration/app-properties
+
 		// Retrieve values from your legacy Xamarin application through the LegacyApplication class.
 
 		// The code below assumes that there is a property value saved with the key "id". Replace this key
 		// with any value(s) you have stored in your legacy Xamarin app to get them out.
-
-		// For more information, see: https://learn.microsoft.com/dotnet/maui/migration/app-properties
 
 		int id;
 		if (LegacyApplication.Current.Properties.ContainsKey("id"))

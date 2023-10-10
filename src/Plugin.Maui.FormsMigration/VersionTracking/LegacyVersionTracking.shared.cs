@@ -1,9 +1,17 @@
 ﻿using Microsoft.Maui.ApplicationModel;
+using Microsoft.Maui.Storage;
 
 namespace Plugin.Maui.FormsMigration;
 
+/// <summary>
+/// The LegacyVersionTracking API can be used to access the legacy Xamarin application version tracking information in your .NET MAUI app.
+/// </summary>
+/// <remarks>Important: make sure that your .NET MAUI app version is higher than the legacy application version number. Not doing so might have unexpected results.</remarks>
 public static class LegacyVersionTracking
 {
+	static string PrivateVersionTrackingSharedNameMaui =>
+		$"{AppInfo.Current.PackageName}.microsoft.maui.essentials.versiontracking";
+
 	const string versionsKey = "VersionTracking.Versions";
 	const string buildsKey = "VersionTracking.Builds";
 
@@ -18,6 +26,31 @@ public static class LegacyVersionTracking
 	static LegacyVersionTracking()
 	{
 		InitVersionTracking();
+	}
+
+	/// <summary>
+	/// Transfers the version and/or build number information from the legacy Xamarin app to the .NET MAUI Version Tracking data store.
+	/// </summary>
+	/// <param name="includeVersionInfo">Determines whether or not version number information should be included in the transfer.</param>
+	/// <param name="includeBuildInfo">Determines whether or not build number information should be included in the transfer.</param>
+	/// <param name="clearMauiVersionHistory">Determines whether or not to clear the current .NET MAUI app version history before transferring the legacy Xamarin app history.</param>
+	/// <remarks>When not setting <paramref name="clearMauiVersionHistory"/> to <see langword="true"/>, newer version/build numbers might appear before the legacy version/build number history.</remarks>
+	public static void TransferHistory(bool includeVersionInfo, bool includeBuildInfo, bool clearMauiVersionHistory)
+	{
+		if (clearMauiVersionHistory)
+		{
+			Preferences.Default.Clear(PrivateVersionTrackingSharedNameMaui);
+		}
+
+		if (includeVersionInfo)
+		{
+			WriteVersionTrackingHistory(VersionsKey, LegacyVersionTracking.VersionHistory);
+		}
+
+		if (includeBuildInfo)
+		{
+			WriteVersionTrackingHistory(BuildsKey, LegacyVersionTracking.BuildHistory);
+		}
 	}
 
 	/// <summary>
@@ -96,22 +129,22 @@ public static class LegacyVersionTracking
 	/// <summary>
 	/// Gets the version number for the previously run version of the legacy Xamarin app.
 	/// </summary>
-	public static string PreviousVersion => GetPrevious(versionsKey);
+	public static string? PreviousVersion => GetPrevious(versionsKey);
 
 	/// <summary>
 	/// Gets the build number for the previously run version of the legacy Xamarin app.
 	/// </summary>
-	public static string PreviousBuild => GetPrevious(buildsKey);
+	public static string? PreviousBuild => GetPrevious(buildsKey);
 
 	/// <summary>
 	/// Gets the version number of the first version of the app legacy Xamarin that was installed on this device.
 	/// </summary>
-	public static string FirstInstalledVersion => versionTrail[versionsKey].FirstOrDefault();
+	public static string? FirstInstalledVersion => versionTrail[versionsKey].FirstOrDefault();
 
 	/// <summary>
 	/// Gets the build number of first version of the legacy Xamarin app that was installed on this device.
 	/// </summary>
-	public static string FirstInstalledBuild => versionTrail[buildsKey].FirstOrDefault();
+	public static string? FirstInstalledBuild => versionTrail[buildsKey].FirstOrDefault();
 
 	/// <summary>
 	/// Gets the collection of version numbers of the legacy Xamarin app that ran on this device.
@@ -143,13 +176,19 @@ public static class LegacyVersionTracking
 		=> LegacyPreferences.Get(key, null, sharedName)?.Split(new[] { '|' },
 			StringSplitOptions.RemoveEmptyEntries) ?? Array.Empty<string>();
 
-	static string GetPrevious(string key)
+	static string? GetPrevious(string key)
 	{
 		var trail = versionTrail[key];
 		return (trail.Count >= 2) ? trail[trail.Count - 2] : null;
 	}
 
-	static string LastInstalledVersion => versionTrail[versionsKey].LastOrDefault();
+	static string? LastInstalledVersion => versionTrail[versionsKey].LastOrDefault();
 
-	static string LastInstalledBuild => versionTrail[buildsKey].LastOrDefault();
+	static string? LastInstalledBuild => versionTrail[buildsKey].LastOrDefault();
+
+	static void WriteVersionTrackingHistory(string key, IEnumerable<string> history)
+    {        
+        Preferences.Default.Set(key, string.Join("|", history),
+			PrivateVersionTrackingSharedNameMaui);
+    }
 }
