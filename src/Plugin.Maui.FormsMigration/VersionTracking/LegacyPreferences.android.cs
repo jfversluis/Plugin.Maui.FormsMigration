@@ -85,7 +85,7 @@ public static partial class LegacyPreferences
 
 	static ISharedPreferences GetSharedPreferences(string sharedName)
 	{
-		var context = Application.Context;
+		var context = Platform.AppContext;
 
 		return string.IsNullOrWhiteSpace(sharedName) ?
 #pragma warning disable CS0618 // Type or member is obsolete

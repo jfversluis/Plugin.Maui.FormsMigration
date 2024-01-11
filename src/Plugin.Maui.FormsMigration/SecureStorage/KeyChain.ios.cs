@@ -1,3 +1,4 @@
+using Foundation;
 using Security;
 
 namespace Plugin.Maui.FormsMigration;
