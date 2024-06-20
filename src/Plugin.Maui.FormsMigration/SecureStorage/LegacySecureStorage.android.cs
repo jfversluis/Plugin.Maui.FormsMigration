@@ -47,7 +47,7 @@ public static class LegacySecureStorage
 	/// <param name="key">The key to remove.</param>
 	public static bool Remove(string key)
     {
-        Preferences.Clear(alias);
+        Preferences.Remove(key, alias);
 
         return true;
     }
