@@ -68,10 +68,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.110" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.9" />
 		<PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="all" IsImplicitlyDefined="true" />
-		<PackageReference Include="System.Management" Version="8.0.0" Condition="$(TargetFramework.Contains('-windows')) == true" />
+		<PackageReference Include="System.Management" Version="9.0.9" Condition="$(TargetFramework.Contains('-windows')) == true" />
 	</ItemGroup>
 
 	<!-- Package additions -->
