@@ -44,7 +44,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Maui.Controls" Version="9.0.110" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="9.0.9" />
 		<ProjectReference Include="..\..\src\Plugin.Maui.FormsMigration\Plugin.Maui.FormsMigration.csproj" />
 	</ItemGroup>
 </Project>
